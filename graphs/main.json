@@ -1,0 +1,62 @@
+{
+    "properties": {
+        "name": "main",
+        "environment": {
+            "type": "noflo-nodejs"
+        },
+        "description": "vPlan core flow switcher",
+        "icon": "fa-cog"
+    },
+    "inports": {},
+    "outports": {},
+    "groups": [],
+    "processes": {
+        "redis/Subscribe_ijp88": {
+            "component": "redis/Subscribe",
+            "metadata": {
+                "label": "Subscribe",
+                "x": 648,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_ewanf": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Output",
+                "x": 936,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "redis/Subscribe_ijp88",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_ewanf",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "data": "127.0.0.1",
+            "tgt": {
+                "process": "redis/Subscribe_ijp88",
+                "port": "url"
+            }
+        },
+        {
+            "data": "*",
+            "tgt": {
+                "process": "redis/Subscribe_ijp88",
+                "port": "channel"
+            }
+        }
+    ]
+}
